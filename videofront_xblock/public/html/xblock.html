@@ -1,0 +1,38 @@
+<div class="videofront-xblock">
+  <h2>{{ display_name }}</h2>
+  {% for level, message in messages %}
+  <p class="{{ level }}"><i class="icon fa fa-{{ level }}"></i><span>{{ message }}</span></p>
+  {% endfor %}
+
+  <div class="videoplayer">
+    <video
+      class="video-js vjs-default-skin vjs-big-play-centered"
+      controls
+      preload="none"
+      width="100%"
+      height="375px"
+      poster="{{ video.thumbnail }}"
+      data-setup='{ "playbackRates": [0.5, 1, 1.5, 2] }'
+      crossorigin="anonymous"
+      >
+      {% for source in video.formats %}
+      <source src="{{ source.url }}" type="video/mp4" label="{{ source.name }}" res="{{ source.bitrate }}"/>
+      {% endfor %}
+      {% for subtitle in video.subtitles %}
+      <track src="{{ subtitle.url }}" kind="subtitles" srclang="{{ subtitle.language }}" label="{{ subtitle.language}}">
+      {% endfor %}
+      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+    </video>
+
+    <div class="transcript"></div>
+  </div>
+
+  {% if downloads %}
+  <p>Download video:
+    {% for download in downloads %}
+    <a href="{{ download.url }}" target="_blank">{{ download.label }}</a>
+    {% if not forloop.last %}/{% endif %}
+    {% endfor %}
+  </p>
+  {% endif %}
+</div>

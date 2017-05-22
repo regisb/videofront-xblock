@@ -1,0 +1,31 @@
+.videoplayer {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.videoplayer.transcript-enabled > div:first-child {
+  float: left;
+}
+
+.videoplayer .transcript {
+  display: none;
+
+  height: 370px;
+  overflow-y: auto;
+  border: 1px solid #C4BFAB;
+  border-radius: 3px 0px 0px 3px;
+  padding: 2px;
+}
+
+.videoplayer.transcript-enabled .transcript {
+  display: block;
+  width: 38%;
+}
+
+.videoplayer .transcript .cue {
+  cursor: pointer;
+}
+
+.videoplayer .transcript .cue.current {
+  font-weight: bold;
+}
